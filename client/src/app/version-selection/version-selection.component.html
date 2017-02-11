@@ -1,0 +1,12 @@
+<div>
+  <div *ngFor="let branch of branches | key">
+    <h2>{{branch}}</h2>
+    <md-list>
+      <md-list-item 
+        (click)="select(build)"
+        *ngFor="let build of branches[branch]">
+        {{build.key}}
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

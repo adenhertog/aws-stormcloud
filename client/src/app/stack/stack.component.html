@@ -1,0 +1,5 @@
+<td>{{stack.name}}</td>
+<td>{{stack.template}}</td>
+<td 
+  *ngFor="let build of stack.builds"
+  (click)="configureParameter(build)">{{build.key}}</td>

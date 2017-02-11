@@ -1,0 +1,17 @@
+<div>
+  <button md-raised-button color="primary"><md-icon>add</md-icon> Add Stack</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stack</th>
+      <th>Template</th>
+      <th>Parameter 1</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr asc-stack *ngFor="let stack of stacks" [stack]="stack" [builds]="builds"></tr>
+  </tbody>
+</table>

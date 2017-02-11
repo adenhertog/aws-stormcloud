@@ -1,0 +1,22 @@
+{
+  "name": "aws-stormcloud",
+  "description": "A continuous integration platform for managing AWS Cloudformation stacks in development teams",
+  "main": "index.js",
+  "authors": [
+    "Andrew den Hertog <andrew.denhertog@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/adenhertog/aws-stormcloud",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uikit": "^2.27.2",
+    "ember": "^2.11.0"
+  }
+}

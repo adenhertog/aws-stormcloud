@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/adenhertog/aws-stormcloud.svg?branch=master)](https://travis-ci.org/adenhertog/aws-stormcloud)
+
 # aws-stormcloud
 
 A continuous integration platform for managing AWS Cloudformation stacks in development teams.

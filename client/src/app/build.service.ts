@@ -12,16 +12,23 @@ export class BuildService {
 
   list(): Observable<Build[]> {
     return new Observable<Build[]>(observer => {
-      const build = new Build();
-      build.repository = 'ftr-api';
-      build.branch = 'develop';
-      build.key = 'ftr-api-0.0.1.zip';
+      const developBuild = new Build();
+      developBuild.repository = 'ftr-api';
+      developBuild.branch = 'develop';
+      developBuild.key = 'ftr-api-0.0.1.zip';
+
+      const masterBuild = new Build();
+      masterBuild.repository = 'ftr-api';
+      masterBuild.branch = 'master';
+      masterBuild.key = 'ftr-api-0.0.2.zip';
 
       const builds = new Array<Build>();
-      builds.push(build);
-      builds.push(build);
-      builds.push(build);
-      builds.push(build);
+      builds.push(developBuild);
+      builds.push(developBuild);
+      builds.push(developBuild);
+      builds.push(masterBuild);
+      builds.push(masterBuild);
+      builds.push(masterBuild);
 
       observer.next(builds);
     });

@@ -1,11 +1,10 @@
 <div>
-  <div *ngFor="let branch of branches | key">
-    <h2>{{branch}}</h2>
+  <div *ngFor="let branch of branches | key" class="version-selection">
+    <h3>{{branch}}</h3>
     <md-list>
       <md-list-item 
-        (click)="select(build)"
         *ngFor="let build of branches[branch]">
-        {{build.key}}
+        <button md-button (click)="select(build)">{{build.key}}</button>
       </md-list-item>
     </md-list>
   </div>

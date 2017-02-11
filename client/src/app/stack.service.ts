@@ -19,7 +19,11 @@ export class StackService {
       let stacks = new Array<Stack>();
       let stack1 = new Stack();
       stack1.name = 'ftrx-andrew';
-      stack1.template = 'develop/0.0.1';
+      stack1.template = new Build();
+      stack1.template.branch = 'develop';
+      stack1.template.repository = 'ftr-cloudformation';
+      stack1.template.key = '0.0.1/main.template';
+
       stack1.builds = new Array<Build>();
 
       const ftrApi = new Build();
@@ -34,6 +38,10 @@ export class StackService {
 
       observer.next(stacks);
     });
+  }
+
+  delete(stack: Stack): Observable<void> {
+    return new Observable<void>(observer => observer.next());
   }
 
   /** 

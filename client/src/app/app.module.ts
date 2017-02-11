@@ -13,17 +13,20 @@ import { StackComponent } from './stack/stack.component';
 import { StackListComponent } from './stack-list/stack-list.component';
 import { VersionSelectionComponent } from './version-selection/version-selection.component';
 import { KeyPipe } from './key.pipe';
+import { DeleteStackComponent } from './delete-stack/delete-stack.component';
 
 @NgModule({
   entryComponents: [
-    VersionSelectionComponent
+    VersionSelectionComponent,
+    DeleteStackComponent
   ],
   declarations: [
     AppComponent,
     StackComponent,
     StackListComponent,
     VersionSelectionComponent,
-    KeyPipe
+    KeyPipe,
+    DeleteStackComponent
   ],
   imports: [
     BrowserModule,

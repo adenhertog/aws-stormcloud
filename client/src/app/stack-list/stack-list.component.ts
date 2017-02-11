@@ -15,7 +15,8 @@ export class StackListComponent implements OnInit {
   stacks: Array<Stack>;
   builds: any;
 
-  constructor(private stackService: StackService,
+  constructor(
+      private stackService: StackService,
       private buildService: BuildService) { }
 
   ngOnInit() {
@@ -23,11 +24,21 @@ export class StackListComponent implements OnInit {
     this.loadBuilds();
   }
 
+  saveStack(stack: Stack) {
+    this.stackService.update(stack);
+  }
+
+  deleteStack(stack: Stack) {
+    const stackIndex = this.stacks.indexOf(stack);
+    this.stacks.splice(stackIndex, 1);
+    this.stackService.delete(stack).subscribe(() => {});
+  }
+
   /** 
    * transforms arrays of builds into a dictionary of:
    * { repository: { branch: [ build ]}}
    */
-  private loadBuilds() {
+  loadBuilds() {
     this.buildService.list().subscribe(builds => {
       this.builds = _.groupBy(builds, build => build.repository);
 

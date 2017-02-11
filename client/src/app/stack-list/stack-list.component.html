@@ -12,6 +12,12 @@
   </thead>
 
   <tbody>
-    <tr asc-stack *ngFor="let stack of stacks" [stack]="stack" [builds]="builds"></tr>
+    <tr
+      asc-stack
+      *ngFor="let stack of stacks"
+      [stack]="stack"
+      [builds]="builds"
+      (saveStack)="saveStack(stack)"
+      (deleteStack)="deleteStack(stack)"></tr>
   </tbody>
 </table>

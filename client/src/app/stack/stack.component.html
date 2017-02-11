@@ -1,5 +1,12 @@
 <td>{{stack.name}}</td>
-<td>{{stack.template}}</td>
+<td>
+  <button md-button (click)="configureTemplate()">{{stack.template.key}}</button>
+</td>
 <td 
-  *ngFor="let build of stack.builds"
-  (click)="configureParameter(build)">{{build.key}}</td>
+  *ngFor="let build of stack.builds">
+  <button md-button (click)="configureParameter(build)">{{build.key}}</button>
+</td>
+<td>
+  <button md-mini-fab (click)="save()" title="save stack updates"><md-icon>save</md-icon></button>
+  <button md-mini-fab (click)="delete()" title="delete stack"><md-icon>delete</md-icon></button>
+</td>

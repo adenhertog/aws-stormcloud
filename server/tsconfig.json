@@ -1,17 +1,10 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "npm:*": ["local-types/*"],
-      "*": ["local-types/*"]
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "preserveConstEnums": true
     }
-  },
-  "include": [
-    "app/**/*"
-  ]
 }

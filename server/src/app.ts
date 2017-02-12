@@ -3,14 +3,11 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import {join} from 'path';
 import index from './routes/index';
-import users from './routes/users';
+import stackRoutes from './routes/stack';
+import buildRoutes from './routes/build';
 import cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
 
 const app: express.Express = express();
-
-// view engine setup
-app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -21,7 +18,8 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/stack', stackRoutes);
+app.use('/build', buildRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -27,10 +27,10 @@ gulp.task('test', function () {
 });
 
 // run browser-sync on for client changes
-gulp.task('browser-sync', ['nodemon', 'watch'], function () {
+gulp.task('browser-sync', ['buildAll', 'nodemon', 'watch'], function () {
     browserSync.init(null, {
         proxy: "http://localhost:3000",
-        files: ["dist/public/**/*.*", "dist/views/**/*.*"],
+        files: ["dist/public/**/*.*"],
         browser: "google chrome",
         port: 7000,
     });
@@ -42,7 +42,7 @@ gulp.task('nodemon', function (cb) {
 
     return nodemon({
         script: 'dist/www.js',
-        watch: ['dist/*.js']
+        watch: ['dist/**/*.js']
     }).on('start', function () {
         if (!started) {
             cb();
@@ -58,35 +58,29 @@ gulp.task('nodemon', function (cb) {
 });
 
 // TypeScript build for /src folder, pipes in .d.ts files from typings folder 
-const transpiler = tsb.create('src/tsconfig.json');
+const transpiler = tsb.create('tsconfig.json');
 gulp.task('build', function () {
-    return gulp.src(['src/server/**/*.ts'])
+    return gulp.src(['src/**/*.ts'])
         .pipe(transpiler()) 
         .pipe(gulp.dest('dist'));
 });
 
 // TypeScript build for /tests folder, pipes in .d.ts files from typings folder
 // as well as the src/tsd.d.ts which is referenced by tests/tsd.d.ts 
-var tsConfigTests = tsb.create('tests/tsconfig.json');
+var tsConfigTests = tsb.create('src/tests/tsconfig.json');
 gulp.task('buildTests', function () {
     // pipe in all necessary files
-    return gulp.src(['tests/**/*.ts'])
+    return gulp.src(['src/tests/**/*.ts'])
         .pipe(tsConfigTests()) 
-        .pipe(gulp.dest('test'));
-});
-
-gulp.task('views', () => {
-    gulp.src('src/server/views/**/*.jade')
-        .pipe(gulp.dest('dist/views'));
+        .pipe(gulp.dest('tests'));
 });
 
 // watch for any TypeScript or LESS file changes
 // if a file change is detected, run the TypeScript or LESS compile gulp tasks
-gulp.task('watch', ['build', 'buildTests', 'less', 'views'], function () {
+gulp.task('watch', ['build', 'buildTests', 'less'], function () {
     gulp.watch('src/**/*.ts', ['build']);
     gulp.watch('tests/**/*.ts', ['buildTests']);
     gulp.watch('src/server/styles/**/*.less', ['less']);
-    gulp.watch('src/server/views/**/*.jade', ['views']);
 }); 
 
 gulp.task('buildAll', ['build', 'buildTests', 'less']);
